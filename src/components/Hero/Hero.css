@@ -1,0 +1,199 @@
+/* ============ phone: photo panel on top, words underneath ============ */
+.hero {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: var(--ink-800);
+}
+
+.hero-stage {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+}
+
+.hero-slide {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: var(--fm, 50% 25%);
+  transform-origin: 50% 28%;
+  will-change: transform, opacity;
+}
+
+/* keeps the transparent navbar readable over the photo */
+.hero-stage::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 30%;
+  background: linear-gradient(to bottom, rgba(8, 6, 26, 0.72), transparent);
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* melts the photo into the page below — no hard edge, no border */
+.hero-stage::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, var(--ink-800) 1%, rgba(8, 6, 26, 0.35) 32%, transparent 60%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.hero-inner {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  margin-top: -38px;
+  padding-bottom: 52px;
+}
+
+.hero-role {
+  margin: 0 0 8px;
+  color: var(--gold-soft);
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+}
+
+/* one line at every width: letters never wrap, size follows the screen */
+.hero-name {
+  font-family: "Marcellus", Georgia, serif;
+  font-weight: 400;
+  font-size: clamp(1.75rem, 10.2vw, 3.4rem);
+  line-height: 1.08;
+  letter-spacing: -0.005em;
+  margin: 0;
+  color: #fff;
+  display: flex;
+  flex-wrap: nowrap;
+  white-space: nowrap;
+  max-width: 100%;
+}
+
+.hero-name span { display: inline-block; }
+
+.hero-rule {
+  width: 70px;
+  height: 1px;
+  background: var(--gold);
+  margin: 15px 0 13px;
+  transform-origin: left center;
+}
+
+.hero-tagline { margin: 0; color: var(--text); font-size: 0.98rem; max-width: 28ch; }
+
+.hero-quote {
+  margin: 15px 0 0;
+  padding-left: 13px;
+  border-left: 1px solid rgba(201, 162, 39, 0.5);
+  font-family: "Marcellus", Georgia, serif;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--text-dim);
+  max-width: 32ch;
+}
+
+.hero-dots { display: flex; gap: 9px; margin-top: 22px; }
+.hero-dots button { background: none; border: 0; padding: 9px 0; cursor: pointer; }
+
+.hero-dots span {
+  display: block;
+  position: relative;
+  width: 22px;
+  height: 2px;
+  background: rgba(236, 233, 251, 0.3);
+  overflow: hidden;
+  transition: width 0.5s var(--ease);
+}
+
+.hero-dots span.is-active { width: 42px; }
+
+.hero-dots i {
+  position: absolute;
+  inset: 0;
+  background: var(--gold);
+  transform-origin: left center;
+  animation: fill linear forwards;
+}
+
+@keyframes fill { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+
+.hero-cue { display: none; }
+
+/* ============ tablet ============ */
+@media (min-width: 640px) {
+  .hero-stage { aspect-ratio: 4 / 3; }
+  .hero-name { font-size: clamp(2.6rem, 7.6vw, 4.2rem); }
+  .hero-tagline { font-size: 1.06rem; max-width: 32ch; }
+  .hero-quote { font-size: 1.02rem; max-width: 36ch; }
+  .hero-inner { margin-top: -46px; padding-bottom: 66px; }
+}
+
+/* ============ laptop and up: full-bleed under the navbar ============ */
+@media (min-width: 950px) {
+  .hero {
+    flex-direction: row;
+    align-items: center;
+    min-height: 100svh;
+    overflow: hidden;
+  }
+
+  .hero-stage { position: absolute; inset: 0; aspect-ratio: auto; }
+
+  .hero-slide { object-position: var(--fd, 50% 50%); transform-origin: 50% 40%; }
+
+  .hero-stage::before { height: 22%; background: linear-gradient(to bottom, rgba(8, 6, 26, 0.6), transparent); }
+
+  .hero-stage::after {
+    background:
+      linear-gradient(90deg, rgba(8, 6, 26, 0.2) 0%, rgba(8, 6, 26, 0.55) 44%, rgba(8, 6, 26, 0.93) 100%),
+      linear-gradient(to top, rgba(8, 6, 26, 0.85), transparent 52%);
+  }
+
+  .hero-inner {
+    align-items: flex-end;
+    text-align: right;
+    margin-top: 0;
+    padding-bottom: 0;
+    padding-top: var(--nav-h);
+  }
+
+  .hero-name { font-size: clamp(3.4rem, 6.2vw, 5.4rem); justify-content: flex-end; }
+  .hero-rule { transform-origin: right center; width: clamp(90px, 12vw, 140px); }
+  .hero-tagline { font-size: 1.12rem; }
+
+  .hero-quote {
+    padding-left: 0;
+    padding-right: 16px;
+    border-left: 0;
+    border-right: 1px solid rgba(201, 162, 39, 0.5);
+    font-size: 1.05rem;
+  }
+
+  .hero-dots { justify-content: flex-end; }
+
+  .hero-cue {
+    display: flex;
+    position: absolute;
+    bottom: 22px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    width: 21px;
+    height: 34px;
+    border: 1px solid rgba(236, 233, 251, 0.35);
+    border-radius: 12px;
+    justify-content: center;
+    padding-top: 6px;
+  }
+
+  .hero-cue span { width: 3px; height: 7px; border-radius: 2px; background: var(--gold-soft); display: block; }
+}

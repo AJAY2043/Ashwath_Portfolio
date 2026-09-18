@@ -1,0 +1,83 @@
+/* ---------- phone first ---------- */
+.goals { position: relative; overflow: hidden; background: var(--ink-800); }
+
+.goals-bg {
+  position: absolute;
+  inset: -8% 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0.14;
+  will-change: transform;
+}
+
+.goals::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(90% 60% at 50% 0%, rgba(27, 21, 66, 0.7), transparent 70%),
+    linear-gradient(180deg, var(--ink-800) 0%, rgba(13, 10, 36, 0.9) 45%, var(--ink-800) 100%);
+  pointer-events: none;
+}
+
+.goals-inner { position: relative; z-index: 1; }
+
+.goals-list { display: grid; gap: 16px; margin-top: 8px; }
+
+.goal {
+  position: relative;
+  overflow: hidden;
+  padding: 26px 22px 26px 26px;
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  background: linear-gradient(160deg, rgba(27, 21, 66, 0.55), rgba(13, 10, 36, 0.4));
+  transition: border-color 0.5s var(--ease), transform 0.5s var(--ease);
+}
+
+/* gold bracket down the left edge */
+.goal::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 22px;
+  bottom: 22px;
+  width: 2px;
+  background: linear-gradient(var(--gold), rgba(201, 162, 39, 0));
+}
+
+/* the light that sweeps across once, when it comes into view */
+.goal-shine {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 42%;
+  background: linear-gradient(100deg, transparent, rgba(255, 243, 207, 0.14), transparent);
+  pointer-events: none;
+}
+
+.goal h3 {
+  font-family: "Marcellus", Georgia, serif;
+  font-weight: 400;
+  font-size: 1.28rem;
+  line-height: 1.25;
+  color: var(--gold-soft);
+  margin: 0 0 10px;
+}
+
+.goal p { margin: 0; color: var(--text); }
+
+/* ---------- tablet and up ---------- */
+@media (min-width: 760px) {
+  .goals-list { gap: 20px; }
+  .goal { padding: 34px 32px 34px 34px; }
+  .goal h3 { font-size: 1.5rem; }
+}
+
+@media (min-width: 1000px) {
+  .goals-list { grid-template-columns: repeat(3, 1fr); gap: 22px; }
+  .goal { padding: 40px 30px; }
+  .goal h3 { font-size: 1.42rem; min-height: 2.5em; }
+}
+
+@media (hover: hover) {
+  .goal:hover { border-color: rgba(201, 162, 39, 0.45); transform: translateY(-4px); }
+}

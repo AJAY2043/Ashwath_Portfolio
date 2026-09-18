@@ -1,0 +1,71 @@
+/* ---------- phone first ---------- */
+.ideology { position: relative; overflow: hidden; background: var(--ink-900); }
+
+.ideology-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center 30%;
+  opacity: 0.2;
+  will-change: transform;
+}
+
+.ideology::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(70% 55% at 50% 45%, rgba(8, 6, 26, 0.55), rgba(8, 6, 26, 0.95) 78%),
+    linear-gradient(180deg, var(--ink-900), rgba(8, 6, 26, 0.8) 30%, var(--ink-900));
+  pointer-events: none;
+}
+
+.ideology-inner { position: relative; z-index: 1; }
+
+.ideology-grid { display: grid; gap: 30px; margin-top: 10px; }
+
+.rule-card { position: relative; padding-top: 22px; }
+
+.rule-card-line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, var(--gold), rgba(201, 162, 39, 0.05));
+  transform-origin: left center;
+}
+
+.rule-card-mark {
+  position: absolute;
+  top: -3px;
+  left: 0;
+  width: 6px;
+  height: 6px;
+  background: var(--gold);
+  transform: rotate(45deg);
+  box-shadow: 0 0 12px rgba(201, 162, 39, 0.8);
+}
+
+.rule-card h3 {
+  font-family: "Marcellus", Georgia, serif;
+  font-weight: 400;
+  font-size: 1.3rem;
+  color: #fff;
+  margin: 0 0 8px;
+}
+
+.rule-card p { margin: 0; color: var(--text-dim); max-width: 52ch; }
+
+/* ---------- tablet and up ---------- */
+@media (min-width: 760px) {
+  .ideology-grid { grid-template-columns: repeat(2, 1fr); gap: 44px 40px; }
+  .rule-card h3 { font-size: 1.45rem; }
+}
+
+@media (min-width: 1000px) {
+  .ideology-grid { gap: 56px 64px; margin-top: 20px; }
+  .rule-card { padding-top: 26px; }
+  .rule-card h3 { font-size: 1.6rem; }
+  .rule-card p { font-size: 1rem; }
+}
