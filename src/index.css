@@ -1,20 +1,16 @@
 @import url("https://fonts.googleapis.com/css2?family=Marcellus&family=Karla:wght@400;600&display=swap");
 
 :root {
-  /* base */
   --ink-900: #08061a;
   --ink-800: #0d0a24;
   --ink-700: #141031;
   --ink-600: #1b1542;
-  /* accent */
   --gold: #c9a227;
   --gold-soft: #e7c66b;
   --gold-pale: #fff3cf;
-  /* type */
   --text: #ece9fb;
   --text-dim: #9d96c6;
   --line: rgba(236, 233, 251, 0.13);
-  /* layout */
   --shell: min(1140px, 100% - 36px);
   --nav-h: 62px;
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
@@ -41,7 +37,6 @@ img { max-width: 100%; display: block; }
 :focus-visible { outline: 2px solid var(--gold-soft); outline-offset: 3px; }
 
 .shell { width: var(--shell); margin: 0 auto; }
-
 
 .section { padding: 76px 0; position: relative; }
 
@@ -71,15 +66,6 @@ img { max-width: 100%; display: block; }
   transform-origin: left center;
   margin: 0 0 30px;
 }
-
-.band { position: relative; background-size: cover; background-position: center; }
-.band::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(rgba(13, 10, 36, 0.93), rgba(13, 10, 36, 0.97));
-}
-.band > * { position: relative; z-index: 1; }
 
 @media (min-width: 950px) {
   :root { --nav-h: 76px; --shell: min(1140px, 100% - 64px); }

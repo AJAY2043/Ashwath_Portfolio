@@ -1,11 +1,11 @@
 // ⚠️ PLACEHOLDER IMAGES — swap the files in src/Assets/images/, keep the filenames.
-import imgCorridor from "../Assets/images/bg-01-hero-corridor.webp";
-import imgServices from "../Assets/images/bg-02-services-boardroom.webp";
-import imgCta from "../Assets/images/bg-03-cta-sunset.webp";
-import imgSunset from "../Assets/images/07-spare-boardroom-sunset.webp";
-import imgWalking from "../Assets/images/01-hero-founder-walking.webp";
-import imgOffice from "../Assets/images/02-about-banner-office.webp";
-import imgOpenplan from "../Assets/images/bg-06-careers-openplan.webp";
+import imgCorridor from "../Assets/images/bg-01-hero-corridor.jpg";
+import imgServices from "../Assets/images/bg-02-services-boardroom.jpg";
+import imgCta from "../Assets/images/bg-03-cta-sunset.jpg";
+import imgSunset from "../Assets/images/07-spare-boardroom-sunset.jpg";
+import imgWalking from "../Assets/images/01-hero-founder-walking.jpg";
+import imgOffice from "../Assets/images/02-about-banner-office.jpg";
+import imgOpenplan from "../Assets/images/bg-06-careers-openplan.jpg";
 import imgDark from "../Assets/images/bg-04-testimonial-dark.webp";
 import imgDesk from "../Assets/images/bg-05-hero-mobile.webp";
 // gallery
@@ -29,18 +29,18 @@ export const nav = [
   { label: "Contact", id: "contact" },
 ];
 
-// focusMobile / focusDesktop = CSS object-position, tuned per photo so his face
-// and body both stay in frame. First number left→right, second top→bottom.
+// The second number in each focus value = how far down the photo the browser
+// centres on. Smaller shows more of the top. Drop it to 18% if a head is cut.
 export const hero = {
   tagline: "Builds quietly. Lets the work speak.",
   quote: "Give value first, respect everyone, and the rest takes care of itself.", // TODO: his own words
   slides: [
-    { src: imgCorridor, alt: "Ashwath Mopathi", focusMobile: "33% 50%", focusDesktop: "33% 50%" },
-    { src: imgSunset,   alt: "Ashwath Mopathi", focusMobile: "50% 50%", focusDesktop: "50% 50%" },
-    { src: imgOffice,   alt: "Ashwath Mopathi", focusMobile: "50% 40%", focusDesktop: "50% 40%" },
-    { src: imgCta,      alt: "Ashwath Mopathi", focusMobile: "55% 45%", focusDesktop: "55% 45%" },
-    { src: imgWalking,  alt: "Ashwath Mopathi", focusMobile: "32% 50%", focusDesktop: "32% 50%" },
-    { src: imgServices, alt: "Ashwath Mopathi", focusMobile: "50% 45%", focusDesktop: "50% 45%" },
+    { src: imgCorridor, alt: "Ashwath Mopathi", focusMobile: "33% 22%", focusDesktop: "33% 28%" },
+    { src: imgSunset,   alt: "Ashwath Mopathi", focusMobile: "50% 22%", focusDesktop: "50% 28%" },
+    { src: imgOffice,   alt: "Ashwath Mopathi", focusMobile: "50% 22%", focusDesktop: "50% 25%" },
+    { src: imgCta,      alt: "Ashwath Mopathi", focusMobile: "55% 22%", focusDesktop: "55% 28%" },
+    { src: imgWalking,  alt: "Ashwath Mopathi", focusMobile: "32% 22%", focusDesktop: "32% 28%" },
+    { src: imgServices, alt: "Ashwath Mopathi", focusMobile: "50% 22%", focusDesktop: "50% 28%" },
   ],
 };
 
