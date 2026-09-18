@@ -1,23 +1,34 @@
 @import url("https://fonts.googleapis.com/css2?family=Marcellus&family=Karla:wght@400;600&display=swap");
 
 :root {
+  /* dark base */
   --ink-900: #08061a;
   --ink-800: #0d0a24;
   --ink-700: #141031;
   --ink-600: #1b1542;
+  /* gold accent */
   --gold: #c9a227;
   --gold-soft: #e7c66b;
   --gold-pale: #fff3cf;
+  /* type */
   --text: #ece9fb;
   --text-dim: #9d96c6;
   --line: rgba(236, 233, 251, 0.13);
-  --shell: min(1140px, 100% - 36px);
-  --nav-h: 62px;
+  /* layout */
+  --shell: min(1140px, 100% - 32px);
+  --nav-h: 58px;
+  --ticker-h: 30px;
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
   color-scheme: dark;
 }
 
 * { box-sizing: border-box; }
+
+/* nothing is ever allowed to be wider than the screen */
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
 
 body {
   margin: 0;
@@ -26,22 +37,27 @@ body {
   font-family: "Karla", system-ui, -apple-system, "Segoe UI", sans-serif;
   font-size: 16.5px;
   line-height: 1.7;
-  overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
 }
 
 img { max-width: 100%; display: block; }
 
+button { font-family: inherit; }
+
 ::selection { background: var(--gold); color: var(--ink-900); }
 
 :focus-visible { outline: 2px solid var(--gold-soft); outline-offset: 3px; }
 
+/* the container every section uses */
 .shell { width: var(--shell); margin: 0 auto; }
 
-.section { padding: 76px 0; position: relative; }
+/* clears the fixed navbar + ticker */
+main { padding-top: calc(var(--nav-h) + var(--ticker-h)); }
+
+.section { padding: 72px 0; position: relative; }
 
 .eyebrow {
-  font-size: 0.72rem;
+  font-size: 0.7rem;
   letter-spacing: 0.22em;
   color: var(--gold);
   margin: 0 0 12px;
@@ -50,27 +66,28 @@ img { max-width: 100%; display: block; }
 .section-title {
   font-family: "Marcellus", Georgia, serif;
   font-weight: 400;
-  font-size: clamp(1.8rem, 6.8vw, 2.4rem);
-  line-height: 1.16;
+  font-size: clamp(1.7rem, 6.4vw, 2.3rem);
+  line-height: 1.2;
   margin: 0 0 12px;
   color: #fff;
+  overflow-wrap: break-word;
 }
 
-.section-sub { color: var(--text-dim); margin: 0 0 34px; max-width: 52ch; }
+.section-sub { color: var(--text-dim); margin: 0 0 32px; max-width: 52ch; }
 
 .rule-gold {
   display: block;
-  width: 72px;
+  width: 70px;
   height: 1px;
   background: var(--gold);
   transform-origin: left center;
-  margin: 0 0 30px;
+  margin: 0 0 28px;
 }
 
 @media (min-width: 950px) {
-  :root { --nav-h: 76px; --shell: min(1140px, 100% - 64px); }
-  .section { padding: 132px 0; }
-  .section-title { font-size: clamp(2.2rem, 3.4vw, 3rem); }
+  :root { --nav-h: 72px; --ticker-h: 36px; --shell: min(1140px, 100% - 64px); }
+  .section { padding: 128px 0; }
+  .section-title { font-size: clamp(2.1rem, 3.3vw, 2.9rem); }
 }
 
 @media (prefers-reduced-motion: reduce) {

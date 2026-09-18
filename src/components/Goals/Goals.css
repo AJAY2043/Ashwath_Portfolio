@@ -1,12 +1,12 @@
-/* ---------- phone first ---------- */
+/* ================= phone first ================= */
 .goals { position: relative; overflow: hidden; background: var(--ink-800); }
 
 .goals-bg {
   position: absolute;
-  inset: -8% 0;
+  inset: -6% 0;
   background-size: cover;
   background-position: center;
-  opacity: 0.14;
+  opacity: 0.13;
   will-change: transform;
 }
 
@@ -14,22 +14,24 @@
   content: "";
   position: absolute;
   inset: 0;
-  background: radial-gradient(90% 60% at 50% 0%, rgba(27, 21, 66, 0.7), transparent 70%),
+  background:
+    radial-gradient(90% 55% at 50% 0%, rgba(27, 21, 66, 0.65), transparent 70%),
     linear-gradient(180deg, var(--ink-800) 0%, rgba(13, 10, 36, 0.9) 45%, var(--ink-800) 100%);
   pointer-events: none;
 }
 
 .goals-inner { position: relative; z-index: 1; }
 
-.goals-list { display: grid; gap: 16px; margin-top: 8px; }
+.goals-list { display: grid; gap: 14px; margin-top: 6px; }
 
 .goal {
   position: relative;
   overflow: hidden;
-  padding: 26px 22px 26px 26px;
+  min-width: 0;
+  padding: 24px 20px 24px 24px;
   border: 1px solid var(--line);
   border-radius: 3px;
-  background: linear-gradient(160deg, rgba(27, 21, 66, 0.55), rgba(13, 10, 36, 0.4));
+  background: linear-gradient(160deg, rgba(27, 21, 66, 0.5), rgba(13, 10, 36, 0.38));
   transition: border-color 0.5s var(--ease), transform 0.5s var(--ease);
 }
 
@@ -38,46 +40,48 @@
   content: "";
   position: absolute;
   left: 0;
-  top: 22px;
-  bottom: 22px;
+  top: 20px;
+  bottom: 20px;
   width: 2px;
   background: linear-gradient(var(--gold), rgba(201, 162, 39, 0));
 }
 
-/* the light that sweeps across once, when it comes into view */
+/* a band of light crosses each card once, as it arrives */
 .goal-shine {
   position: absolute;
   top: 0;
   bottom: 0;
-  width: 42%;
-  background: linear-gradient(100deg, transparent, rgba(255, 243, 207, 0.14), transparent);
+  width: 40%;
+  background: linear-gradient(100deg, transparent, rgba(255, 243, 207, 0.13), transparent);
   pointer-events: none;
 }
 
 .goal h3 {
   font-family: "Marcellus", Georgia, serif;
   font-weight: 400;
-  font-size: 1.28rem;
-  line-height: 1.25;
+  font-size: 1.22rem;
+  line-height: 1.28;
   color: var(--gold-soft);
-  margin: 0 0 10px;
+  margin: 0 0 9px;
+  overflow-wrap: break-word;
 }
 
 .goal p { margin: 0; color: var(--text); }
 
-/* ---------- tablet and up ---------- */
-@media (min-width: 760px) {
-  .goals-list { gap: 20px; }
-  .goal { padding: 34px 32px 34px 34px; }
-  .goal h3 { font-size: 1.5rem; }
+/* ================= tablet ================= */
+@media (min-width: 620px) {
+  .goals-list { gap: 18px; }
+  .goal { padding: 30px 28px 30px 30px; }
+  .goal h3 { font-size: 1.4rem; }
 }
 
+/* ================= laptop and up ================= */
 @media (min-width: 1000px) {
-  .goals-list { grid-template-columns: repeat(3, 1fr); gap: 22px; }
-  .goal { padding: 40px 30px; }
-  .goal h3 { font-size: 1.42rem; min-height: 2.5em; }
+  .goals-list { grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .goal { padding: 36px 28px; }
+  .goal h3 { font-size: 1.35rem; min-height: 2.6em; }
 }
 
 @media (hover: hover) {
-  .goal:hover { border-color: rgba(201, 162, 39, 0.45); transform: translateY(-4px); }
+  .goal:hover { border-color: rgba(201, 162, 39, 0.4); transform: translateY(-4px); }
 }

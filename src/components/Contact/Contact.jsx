@@ -17,9 +17,13 @@ export default function Contact() {
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
   const bgY = useTransform(scrollYProgress, [0, 1], ["-8%", "8%"]);
 
+  // wa.me needs digits only — no +, no spaces
+  const waNumber = contact.whatsapp.replace(/\D/g, "");
+  const waLink = `https://wa.me/${waNumber}?text=${encodeURIComponent(contact.whatsappMessage)}`;
+
   const rows = [
+    { label: "WhatsApp", value: contact.whatsapp, href: waLink },
     { label: "Email", value: contact.email, href: `mailto:${contact.email}` },
-    { label: "Phone", value: contact.phone, href: `tel:${contact.phone.replace(/\s/g, "")}` },
     { label: "Based in", value: contact.location, href: null },
   ];
 
@@ -32,41 +36,21 @@ export default function Contact() {
       />
 
       <div className="shell contact-inner">
-        <motion.p
-          className="eyebrow"
-          variants={rise}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, amount: 0.8 }}
-        >
+        <motion.p className="eyebrow" variants={rise} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.8 }}>
           {contact.heading}
         </motion.p>
 
-        <motion.h2
-          className="contact-title"
-          variants={rise}
-          custom={1}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, amount: 0.6 }}
-        >
+        <motion.h2 className="contact-title" variants={rise} custom={1} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.5 }}>
           {contact.line}
         </motion.h2>
 
         <dl className="contact-rows">
           {rows.map((row, i) => (
-            <motion.div
-              key={row.label}
-              variants={rise}
-              custom={i + 2}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true, amount: 0.5 }}
-            >
+            <motion.div key={row.label} variants={rise} custom={i + 2} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.4 }}>
               <dt>{row.label}</dt>
               <dd>
                 {row.href ? (
-                  <a className="contact-link" href={row.href}>
+                  <a className="contact-link" href={row.href} target={row.label === "WhatsApp" ? "_blank" : undefined} rel="noreferrer">
                     <span>{row.value}</span>
                   </a>
                 ) : (
@@ -79,12 +63,14 @@ export default function Contact() {
 
         <motion.a
           className="contact-cta"
-          href={`mailto:${contact.email}`}
+          href={waLink}
+          target="_blank"
+          rel="noreferrer"
           variants={rise}
           custom={5}
           initial="hidden"
           whileInView="show"
-          viewport={{ once: true, amount: 0.5 }}
+          viewport={{ once: true, amount: 0.4 }}
         >
           <span className="contact-cta-shine" aria-hidden="true" />
           Start a conversation

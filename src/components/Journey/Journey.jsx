@@ -4,19 +4,19 @@ import { journey } from "../../data/content";
 import "./Journey.css";
 
 export default function Journey() {
-  const trackRef = useRef(null);
   const sectionRef = useRef(null);
+  const trackRef = useRef(null);
 
   const { scrollYProgress: railProgress } = useScroll({
     target: trackRef,
-    offset: ["start 0.78", "end 0.6"],
+    offset: ["start 0.8", "end 0.6"],
   });
 
   const { scrollYProgress: sectionProgress } = useScroll({
     target: sectionRef,
     offset: ["start end", "end start"],
   });
-  const bgY = useTransform(sectionProgress, [0, 1], ["-6%", "6%"]);
+  const bgY = useTransform(sectionProgress, [0, 1], ["-5%", "5%"]);
 
   return (
     <section className="journey section" id="journey" ref={sectionRef}>
@@ -29,9 +29,9 @@ export default function Journey() {
       <div className="shell journey-inner">
         <motion.p
           className="eyebrow"
-          initial={{ y: 20, opacity: 0 }}
+          initial={{ y: 18, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
-          viewport={{ once: true, amount: 0.8 }}
+          viewport={{ once: true, amount: 0.7 }}
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
         >
           {journey.heading}
@@ -39,10 +39,10 @@ export default function Journey() {
 
         <motion.h2
           className="section-title"
-          initial={{ y: 26, opacity: 0 }}
+          initial={{ y: 24, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
-          viewport={{ once: true, amount: 0.7 }}
-          transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
+          viewport={{ once: true, amount: 0.5 }}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
         >
           {journey.sub}
         </motion.h2>
@@ -56,21 +56,19 @@ export default function Journey() {
             {journey.items.map((item) => (
               <motion.li
                 key={item.year}
-                initial={{ x: 22, opacity: 0 }}
+                initial={{ x: 18, opacity: 0 }}
                 whileInView={{ x: 0, opacity: 1 }}
-                viewport={{ once: true, amount: 0.65 }}
-                transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+                viewport={{ once: true, amount: 0.5 }}
+                transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
               >
                 <motion.span
                   className="journey-dot"
                   initial={{ scale: 0 }}
                   whileInView={{ scale: 1 }}
-                  viewport={{ once: true, amount: 0.65 }}
-                  transition={{ duration: 0.5, delay: 0.12, ease: [0.2, 1.5, 0.4, 1] }}
+                  viewport={{ once: true, amount: 0.5 }}
+                  transition={{ duration: 0.45, delay: 0.1, ease: [0.2, 1.5, 0.4, 1] }}
                 />
-                <div className="journey-meta">
-                  <span className="journey-year">{item.year}</span>
-                </div>
+                <span className="journey-year">{item.year}</span>
                 <div className="journey-body">
                   <h3>{item.title}</h3>
                   <p>{item.text}</p>

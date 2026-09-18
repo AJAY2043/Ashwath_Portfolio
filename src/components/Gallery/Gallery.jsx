@@ -6,8 +6,8 @@ import "./Gallery.css";
 function TiltCard({ photo, index, onOpen }) {
   const mx = useMotionValue(0);
   const my = useMotionValue(0);
-  const rotateX = useSpring(useTransform(my, [-0.5, 0.5], ["6deg", "-6deg"]), { stiffness: 150, damping: 18 });
-  const rotateY = useSpring(useTransform(mx, [-0.5, 0.5], ["-6deg", "6deg"]), { stiffness: 150, damping: 18 });
+  const rotateX = useSpring(useTransform(my, [-0.5, 0.5], ["5deg", "-5deg"]), { stiffness: 150, damping: 18 });
+  const rotateY = useSpring(useTransform(mx, [-0.5, 0.5], ["-5deg", "5deg"]), { stiffness: 150, damping: 18 });
 
   const handleMove = (e) => {
     const r = e.currentTarget.getBoundingClientRect();
@@ -15,7 +15,10 @@ function TiltCard({ photo, index, onOpen }) {
     my.set((e.clientY - r.top) / r.height - 0.5);
   };
 
-  const reset = () => { mx.set(0); my.set(0); };
+  const reset = () => {
+    mx.set(0);
+    my.set(0);
+  };
 
   return (
     <motion.button
@@ -24,10 +27,10 @@ function TiltCard({ photo, index, onOpen }) {
       onMouseLeave={reset}
       onClick={() => onOpen(index)}
       style={{ rotateX, rotateY, transformPerspective: 1000 }}
-      initial={{ y: 42, opacity: 0 }}
+      initial={{ y: 34, opacity: 0 }}
       whileInView={{ y: 0, opacity: 1 }}
-      viewport={{ once: true, amount: 0.25 }}
-      transition={{ duration: 0.9, delay: (index % 3) * 0.1, ease: [0.22, 1, 0.36, 1] }}
+      viewport={{ once: true, amount: 0.2 }}
+      transition={{ duration: 0.85, delay: (index % 3) * 0.09, ease: [0.22, 1, 0.36, 1] }}
       aria-label={`Open photo ${index + 1}`}
     >
       <span className="gal-frame">
@@ -61,11 +64,17 @@ export default function Gallery() {
     };
   }, [open, close, next, prev]);
 
-  const onTouchStart = (e) => { touchX.current = e.touches[0].clientX; };
+  const onTouchStart = (e) => {
+    touchX.current = e.touches[0].clientX;
+  };
+
   const onTouchEnd = (e) => {
     if (touchX.current === null) return;
     const dx = e.changedTouches[0].clientX - touchX.current;
-    if (Math.abs(dx) > 55) (dx < 0 ? next() : prev());
+    if (Math.abs(dx) > 50) {
+      if (dx < 0) next();
+      else prev();
+    }
     touchX.current = null;
   };
 
@@ -74,9 +83,9 @@ export default function Gallery() {
       <div className="shell">
         <motion.p
           className="eyebrow"
-          initial={{ y: 20, opacity: 0 }}
+          initial={{ y: 18, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
-          viewport={{ once: true, amount: 0.8 }}
+          viewport={{ once: true, amount: 0.7 }}
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
         >
           {gallery.heading}
@@ -96,7 +105,7 @@ export default function Gallery() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.35 }}
+            transition={{ duration: 0.3 }}
             onClick={close}
             onTouchStart={onTouchStart}
             onTouchEnd={onTouchEnd}
@@ -108,7 +117,10 @@ export default function Gallery() {
 
             <button
               className="gal-arrow gal-prev"
-              onClick={(e) => { e.stopPropagation(); prev(); }}
+              onClick={(e) => {
+                e.stopPropagation();
+                prev();
+              }}
               aria-label="Previous photo"
             />
 
@@ -116,19 +128,24 @@ export default function Gallery() {
               key={open}
               src={gallery.photos[open].src}
               alt={gallery.photos[open].alt}
-              initial={{ opacity: 0, scale: 0.96 }}
+              initial={{ opacity: 0, scale: 0.97 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
               onClick={(e) => e.stopPropagation()}
             />
 
             <button
               className="gal-arrow gal-next"
-              onClick={(e) => { e.stopPropagation(); next(); }}
+              onClick={(e) => {
+                e.stopPropagation();
+                next();
+              }}
               aria-label="Next photo"
             />
 
-            <span className="gal-count">{open + 1} / {count}</span>
+            <span className="gal-count">
+              {open + 1} / {count}
+            </span>
           </motion.div>
         )}
       </AnimatePresence>

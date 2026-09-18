@@ -1,23 +1,21 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion, useMotionValueEvent, useScroll } from "framer-motion";
-import { site, nav } from "../../data/content";
+import { site, nav, ticker } from "../../data/content";
 import "./Navbar.css";
 
 export default function Navbar() {
-  const [hidden, setHidden] = useState(false);
-  const [solid, setSolid] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const { scrollY, scrollYProgress } = useScroll();
 
-  useMotionValueEvent(scrollY, "change", (y) => {
-    const prev = scrollY.getPrevious() ?? 0;
-    setSolid(y > 80);
-    setHidden(!open && y > prev && y > 340);
-  });
+  useMotionValueEvent(scrollY, "change", (y) => setScrolled(y > 40));
 
+  // stop the page scrolling behind the open menu
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
-    return () => { document.body.style.overflow = ""; };
+    return () => {
+      document.body.style.overflow = "";
+    };
   }, [open]);
 
   const go = (id) => {
@@ -32,12 +30,7 @@ export default function Navbar() {
 
   return (
     <>
-      <motion.header
-        className={`nav ${solid ? "is-solid" : ""}`}
-        initial={{ y: -90, opacity: 0 }}
-        animate={{ y: hidden ? -110 : 0, opacity: 1 }}
-        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-      >
+      <header className={`nav ${scrolled ? "is-scrolled" : ""}`}>
         <div className="shell nav-inner">
           <button className="nav-mark" onClick={toTop} aria-label="Back to top">
             <span className="nav-mark-text">{site.name}</span>
@@ -63,7 +56,22 @@ export default function Navbar() {
         </div>
 
         <motion.div className="nav-progress" style={{ scaleX: scrollYProgress }} />
-      </motion.header>
+      </header>
+
+      <div className="ticker" aria-hidden="true">
+        <div className="ticker-track">
+          {[0, 1].map((copy) => (
+            <div className="ticker-run" key={copy}>
+              {ticker.map((line, i) => (
+                <span key={`${copy}-${i}`}>
+                  {line}
+                  <i />
+                </span>
+              ))}
+            </div>
+          ))}
+        </div>
+      </div>
 
       <AnimatePresence>
         {open && (
@@ -72,19 +80,19 @@ export default function Navbar() {
             initial={{ clipPath: "inset(0 0 100% 0)" }}
             animate={{ clipPath: "inset(0 0 0% 0)" }}
             exit={{ clipPath: "inset(0 0 100% 0)" }}
-            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
           >
             <nav>
               {nav.map((l, i) => (
                 <motion.button
                   key={l.id}
                   onClick={() => go(l.id)}
-                  initial={{ y: 34, opacity: 0 }}
+                  initial={{ y: 30, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
-                  exit={{ y: 20, opacity: 0 }}
-                  transition={{ delay: 0.22 + i * 0.06, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                  exit={{ y: 16, opacity: 0 }}
+                  transition={{ delay: 0.2 + i * 0.06, duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
                 >
-                  <span>{String(i + 1).padStart(2, "0")}</span>
+                  <em>{String(i + 1).padStart(2, "0")}</em>
                   {l.label}
                 </motion.button>
               ))}

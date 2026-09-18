@@ -1,4 +1,4 @@
-/* ---------- phone first ---------- */
+/* ================= phone first ================= */
 .nav {
   position: fixed;
   top: 0;
@@ -8,24 +8,29 @@
   height: var(--nav-h);
   display: flex;
   align-items: center;
-  background: transparent;
-  border-bottom: 1px solid transparent;
-  transition: background-color 0.55s var(--ease), border-color 0.55s var(--ease), backdrop-filter 0.55s var(--ease);
+  background: rgba(8, 6, 26, 0.94);
+  backdrop-filter: blur(14px);
+  transition: background-color 0.5s var(--ease);
 }
 
-.nav.is-solid {
-  background: rgba(8, 6, 26, 0.9);
-  backdrop-filter: blur(16px);
-  border-bottom-color: var(--line);
+.nav.is-scrolled { background: rgba(8, 6, 26, 0.99); }
+
+.nav-inner {
+  width: var(--shell);
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
 }
 
-.nav-inner { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 14px; }
-
-/* his name: light around the border, light through the letters */
+/* --- his name: a light runs around the border, another through the letters --- */
 .nav-mark {
   position: relative;
+  flex: 0 1 auto;
+  min-width: 0;
   border: 0;
-  padding: 7px 14px;
+  padding: 6px 12px;
   border-radius: 999px;
   cursor: pointer;
   background: transparent;
@@ -40,9 +45,9 @@
   background: conic-gradient(
     from 0deg,
     transparent 0deg 250deg,
-    rgba(201, 162, 39, 0.25) 285deg,
+    rgba(201, 162, 39, 0.22) 285deg,
     var(--gold-pale) 330deg,
-    rgba(201, 162, 39, 0.25) 350deg,
+    rgba(201, 162, 39, 0.22) 350deg,
     transparent 360deg
   );
   animation: orbit 4.2s linear infinite;
@@ -54,18 +59,21 @@
   position: absolute;
   inset: 1px;
   border-radius: inherit;
-  background: rgba(10, 8, 30, 0.45);
-  backdrop-filter: blur(6px);
+  background: var(--ink-900);
   z-index: -1;
 }
 
 @keyframes orbit { to { transform: rotate(360deg); } }
 
 .nav-mark-text {
-  font-family: "Marcellus", Georgia, serif;
-  font-size: 0.9rem;
-  letter-spacing: 0.04em;
+  display: block;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
   white-space: nowrap;
+  font-family: "Marcellus", Georgia, serif;
+  font-size: 0.86rem;
+  letter-spacing: 0.03em;
   background-image: linear-gradient(
     100deg,
     #ffffff 0%, #ffffff 36%,
@@ -82,6 +90,7 @@
 
 @keyframes sheen { to { background-position: -130% 0; } }
 
+/* --- reading progress --- */
 .nav-progress {
   position: absolute;
   left: 0;
@@ -92,33 +101,88 @@
   background: linear-gradient(90deg, var(--gold), var(--gold-pale));
 }
 
-.nav-links { display: none; }
-
+/* --- menu button: fixed size, never squeezed out --- */
 .nav-burger {
-  width: 32px;
-  height: 20px;
-  background: none;
-  border: 0;
+  flex: 0 0 40px;
+  position: relative;
+  width: 40px;
+  height: 40px;
   padding: 0;
   cursor: pointer;
-  position: relative;
-  z-index: 80;
+  background: rgba(236, 233, 251, 0.06);
+  border: 1px solid rgba(236, 233, 251, 0.3);
+  border-radius: 9px;
 }
 
 .nav-burger span {
   position: absolute;
-  left: 3px;
-  right: 3px;
-  height: 1px;
+  left: 10px;
+  right: 10px;
+  height: 1.5px;
+  border-radius: 2px;
   background: #fff;
   transition: transform 0.45s var(--ease);
 }
 
-.nav-burger span:first-child { top: 6px; }
-.nav-burger span:last-child { bottom: 6px; }
-.nav-burger.is-open span:first-child { transform: translateY(6px) rotate(45deg); }
-.nav-burger.is-open span:last-child { transform: translateY(-6px) rotate(-45deg); }
+.nav-burger span:first-child { top: 14px; }
+.nav-burger span:last-child { bottom: 14px; }
+.nav-burger.is-open { background: rgba(201, 162, 39, 0.16); border-color: rgba(201, 162, 39, 0.55); }
+.nav-burger.is-open span:first-child { transform: translateY(5px) rotate(45deg); }
+.nav-burger.is-open span:last-child { transform: translateY(-5px) rotate(-45deg); }
 
+.nav-links { display: none; }
+
+/* ================= greeting ticker ================= */
+.ticker {
+  position: fixed;
+  top: var(--nav-h);
+  left: 0;
+  right: 0;
+  z-index: 59;
+  height: var(--ticker-h);
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background: linear-gradient(90deg, var(--ink-700), var(--ink-600), var(--ink-700));
+  border-top: 1px solid rgba(201, 162, 39, 0.25);
+  border-bottom: 1px solid rgba(201, 162, 39, 0.25);
+}
+
+.ticker-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 32s linear infinite;
+}
+
+.ticker-run { display: flex; align-items: center; }
+
+.ticker-run span {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  color: var(--text-dim);
+  white-space: nowrap;
+}
+
+.ticker-run span:nth-child(odd) { color: var(--gold-soft); }
+
+.ticker-run i {
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  margin: 0 16px;
+  background: var(--gold);
+  transform: rotate(45deg);
+  opacity: 0.85;
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* ================= full-screen menu ================= */
 .nav-sheet {
   position: fixed;
   inset: 0;
@@ -129,37 +193,39 @@
   justify-content: center;
 }
 
-.nav-sheet nav { display: grid; gap: 14px; width: min(420px, 82vw); }
+.nav-sheet nav { display: grid; gap: 12px; width: min(400px, 80vw); }
 
 .nav-sheet button {
   display: flex;
   align-items: baseline;
-  gap: 16px;
+  gap: 14px;
   background: none;
   border: 0;
   border-bottom: 1px solid var(--line);
   padding: 0 0 12px;
   cursor: pointer;
   font-family: "Marcellus", Georgia, serif;
-  font-size: clamp(1.5rem, 7.5vw, 2.1rem);
+  font-size: clamp(1.4rem, 7vw, 2rem);
   color: #fff;
   text-align: left;
 }
 
-.nav-sheet button span {
+.nav-sheet em {
   font-family: "Karla", sans-serif;
-  font-size: 0.7rem;
+  font-style: normal;
+  font-size: 0.68rem;
   letter-spacing: 0.2em;
   color: var(--gold);
 }
 
-/* ---------- laptop and up ---------- */
+/* ================= laptop and up ================= */
 @media (min-width: 950px) {
-  .nav-mark { padding: 9px 18px; }
-  .nav-mark-text { font-size: 1.02rem; }
+  .nav-mark { padding: 8px 18px; }
+  .nav-mark-text { font-size: 1rem; }
   .nav-burger { display: none; }
+  .ticker-run span { font-size: 0.75rem; }
 
-  .nav-links { display: flex; gap: 28px; }
+  .nav-links { display: flex; gap: 26px; min-width: 0; }
 
   .nav-links button {
     background: none;
@@ -167,9 +233,9 @@
     padding: 0;
     cursor: pointer;
     color: var(--text-dim);
-    font-family: inherit;
-    font-size: 0.84rem;
+    font-size: 0.83rem;
     letter-spacing: 0.08em;
+    white-space: nowrap;
     transition: color 0.35s var(--ease);
   }
 
@@ -188,6 +254,6 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .nav-mark::before { animation: none; }
-  .nav-mark-text { animation: none; color: #fff; }
+  .nav-mark::before, .nav-mark-text, .ticker-track { animation: none; }
+  .nav-mark-text { color: #fff; }
 }

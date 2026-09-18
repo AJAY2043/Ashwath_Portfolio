@@ -17,7 +17,7 @@ import galThumbB from "../Assets/images/09-thumb-headshot-square.webp";
 
 export const site = {
   name: "Ashwath Mopathi",
-  role: "Entrepreneur · Melbourne",
+  role: "Melbourne, Australia",
 };
 
 export const nav = [
@@ -29,11 +29,21 @@ export const nav = [
   { label: "Contact", id: "contact" },
 ];
 
-// The second number in each focus value = how far down the photo the browser
-// centres on. Smaller shows more of the top. Drop it to 18% if a head is cut.
+// the scrolling greeting line under the navbar
+export const ticker = [
+  "Welcome",
+  "Hi, how are you?",
+  "Good to see you here",
+  "Hope your day is going well",
+  "Take your time, have a look around",
+  "Warm wishes",
+];
+
+// focusMobile / focusDesktop = CSS object-position.
+// Second number = how far down the photo to centre on. Smaller shows more of the top.
 export const hero = {
-  tagline: "Builds quietly. Lets the work speak.",
-  quote: "Give value first, respect everyone, and the rest takes care of itself.", // TODO: his own words
+  tagline: "Quiet work, done properly.",
+  quote: "Give value & respect first, and the rest takes care of itself.",
   slides: [
     { src: imgCorridor, alt: "Ashwath Mopathi", focusMobile: "33% 22%", focusDesktop: "33% 28%" },
     { src: imgSunset,   alt: "Ashwath Mopathi", focusMobile: "50% 22%", focusDesktop: "50% 28%" },
@@ -48,29 +58,30 @@ export const about = {
   heading: "About",
   lede: "He arrived in a city where he knew almost no one, carrying a degree and no particular map for what came next.",
   paragraphs: [
-    "So he took the work that was going. He learned the systems nobody else wanted to learn, and stayed calm in rooms where everything was going wrong. While other people talked about what they would build one day, he had quietly started building it.",
-    "Two decades on, several businesses run under his name across Australia — most of them handled day to day by people he trained first and trusted after. He will tell you the people are the achievement. The rest is paperwork.",
+    "So he took the work that was going, and did it properly. He learned the things nobody else wanted to learn, and stayed calm in rooms where everything was going wrong.",
+    "While other people talked about what they would do one day, he was already doing it — early mornings, long weeks, no announcements.",
+    "Two decades later, plenty of people owe him a start they never had to ask twice for. He will tell you that is the part worth counting.",
     "Ask him about any of it and he will change the subject. That, more than anything, is the man.",
   ],
   marks: [
-    { value: "20+", label: "Years in Australia" },
-    { value: "Several", label: "Businesses built" },
+    { value: "20+", label: "Years of work" },
+    { value: "Daily", label: "Shows up" },
     { value: "Quietly", label: "All of it" },
   ],
 };
 
 export const journey = {
   heading: "Journey",
-  sub: "Employee to owner, one deliberate step at a time.",
+  sub: "One step at a time, none of them shortcuts.",
   background: imgDesk,
   items: [
-    { year: "2006 – 2010", title: "The degree", text: "An engineering degree in computer science, in India." },
+    { year: "2006 – 2010", title: "The degree", text: "An engineering degree in computer science, back home in India." },
     { year: "2012 – 2013", title: "A new country", text: "Moves to Melbourne for a master's in information technology, majoring in security." },
-    { year: "2014 – 2015", title: "Teaching", text: "Teaches IT to students here — the first time he is the one bringing other people up." },
-    { year: "2015", title: "Corporate IT", text: "Handles critical incidents for large companies. Learns to stay calm while everything is on fire, and to be the person others call." },
-    { year: "2018 – 2019", title: "The turn", text: "Starts building for himself. The first ventures of his own, quietly, while still holding down the job." },
-    { year: "2021", title: "All in", text: "Takes on running an operation full-time, with the other ventures growing beside it." },
-    { year: "Today", title: "Owner", text: "Several businesses across Australia, most of them run day to day by people he trained." },
+    { year: "2014 – 2015", title: "Teaching", text: "Teaches students here — the first time he is the one bringing other people up." },
+    { year: "2015", title: "Under pressure", text: "Handles critical incidents for large organisations. Learns to stay calm while everything is on fire, and to be the person others call." },
+    { year: "2018 – 2019", title: "On his own", text: "Starts building something of his own, quietly, while still holding down the job." },
+    { year: "2021", title: "All in", text: "Goes full-time on his own work, with everything else growing beside it." },
+    { year: "Today", title: "Still going", text: "Most of what he started now runs through people he trained himself." },
   ],
 };
 
@@ -80,15 +91,15 @@ export const goals = {
   background: imgOpenplan,
   items: [
     {
-      title: "Something nobody here has built",
-      text: "He is working on an idea he keeps close to his chest. When it lands it won't look like anything already on the market, and that is exactly the point.",
+      title: "Something nobody has tried here",
+      text: "He is working on an idea he keeps close to his chest. When it lands it won't look like anything around it, and that is exactly the point.",
     },
     {
-      title: "More owners, not more staff",
-      text: "The plan was never to be the biggest. It was to put as many people as possible into business for themselves.",
+      title: "Take people with him",
+      text: "The aim was never to stand alone at the top. It was to hand as many people as possible a way up.",
     },
     {
-      title: "Built to run without him",
+      title: "Built to last without him",
       text: "Anything that needs him in the room every day isn't finished yet. The goal is time that is actually his.",
     },
   ],
@@ -119,29 +130,29 @@ export const ideology = {
       text: "He gives before he is asked, and long before there is anything in it for him. It has never once cost him.",
     },
     {
-      title: "Train them, then trust them",
-      text: "He teaches somebody the whole job, hands it over, and gets out of the way. People stay because of it.",
+      title: "Teach them, then trust them",
+      text: "He shows somebody the whole job, hands it over, and gets out of the way. People stay because of it.",
     },
     {
       title: "No noise",
-      text: "No announcements, no audience. If you know what he has built, it's because you were close enough to see it.",
+      text: "No announcements, no audience. If you know what he has done, it's because you were close enough to see it.",
     },
   ],
 };
 
-// TODO: replace with his real details
+// TODO: replace with his real number and email
 export const contact = {
   heading: "Get in touch",
   line: "Open to a conversation, not to a crowd.",
+  whatsapp: "+61 000 000 000",
+  whatsappMessage: "Hi Ashwath, I came across your website.",
   email: "hello@example.com",
-  phone: "+61 400 000 000",
   location: "Melbourne, Australia",
   background: imgCta,
 };
 
-// TODO: replace with his real details
 export const footer = {
-  tagline: "Entrepreneur, Melbourne.",
+  tagline: "Melbourne, Australia.",
   links: [
     { label: "LinkedIn", href: "#" },
     { label: "Instagram", href: "#" },
