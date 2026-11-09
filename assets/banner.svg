@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="320" viewBox="0 0 1280 320" fill="none">
+<defs>
+<linearGradient id="bg" x1="0" y1="0" x2="1280" y2="320" gradientUnits="userSpaceOnUse">
+<stop offset="0" stop-color="#05080F"/><stop offset="0.55" stop-color="#0A1024"/><stop offset="1" stop-color="#070B18"/></linearGradient>
+<linearGradient id="ac" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#22D3EE"/><stop offset="1" stop-color="#7C4DFF"/></linearGradient>
+<radialGradient id="g1" cx="0.5" cy="0.5" r="0.5"><stop offset="0" stop-color="#22D3EE" stop-opacity="0.22"/><stop offset="1" stop-color="#22D3EE" stop-opacity="0"/></radialGradient>
+<radialGradient id="g2" cx="0.5" cy="0.5" r="0.5"><stop offset="0" stop-color="#7C4DFF" stop-opacity="0.26"/><stop offset="1" stop-color="#7C4DFF" stop-opacity="0"/></radialGradient>
+<pattern id="gr" width="44" height="44" patternUnits="userSpaceOnUse"><path d="M44 0H0V44" fill="none" stroke="#5B7FD4" stroke-opacity="0.05" stroke-width="1"/></pattern>
+</defs>
+<rect width="1280" height="320" fill="url(#bg)"/>
+<rect width="1280" height="320" fill="url(#gr)"/>
+<ellipse cx="1130" cy="90" rx="310" ry="230" fill="url(#g1)"/>
+<ellipse cx="250" cy="300" rx="340" ry="230" fill="url(#g2)"/>
+<rect x="80" y="74" width="64" height="3" rx="1.5" fill="url(#ac)"/>
+<text x="80" y="146" font-family="Inter Display, Inter, DejaVu Sans, sans-serif" font-size="58" font-weight="600" fill="#F2F5FF" letter-spacing="-1.2">Ashwath Mopathi</text>
+<text x="80" y="192" font-family="Inter, DejaVu Sans, sans-serif" font-size="20" font-weight="400" fill="#9DB2D9">Personal brand and journey site built for a client</text>
+<g><rect x="80" y="236" width="56" height="28" rx="14" fill="#0E1733" stroke="#22D3EE" stroke-opacity="0.3"/><text x="108" y="255" font-family="DejaVu Sans Mono, monospace" font-size="12" fill="#9FB4DC" text-anchor="middle">React</text></g><g><rect x="146" y="236" width="121.6" height="28" rx="14" fill="#0E1733" stroke="#22D3EE" stroke-opacity="0.3"/><text x="206.8" y="255" font-family="DejaVu Sans Mono, monospace" font-size="12" fill="#9FB4DC" text-anchor="middle">Framer Motion</text></g><g><rect x="277.6" y="236" width="105.19999999999999" height="28" rx="14" fill="#0E1733" stroke="#22D3EE" stroke-opacity="0.3"/><text x="330.20000000000005" y="255" font-family="DejaVu Sans Mono, monospace" font-size="12" fill="#9FB4DC" text-anchor="middle">Single-page</text></g>
+
+    <circle cx="1120" cy="160" r="60" fill="none" stroke="#22D3EE" stroke-opacity="0.12" stroke-width="1"/>
+    <circle cx="1120" cy="138" r="19" fill="#22D3EE" fill-opacity="0.10" stroke="#22D3EE" stroke-width="2"/>
+    <path d="M1086 198a34 34 0 0 1 68 0" fill="none" stroke="#22D3EE" stroke-width="2" stroke-linecap="round"/>
+    <path d="M1040 120h22M1040 134h14M1178 186h22M1186 200h14" stroke="#22D3EE" stroke-opacity="0.38" stroke-width="1.6" stroke-linecap="round"/>
+<rect x="0" y="316" width="1280" height="4" fill="url(#ac)"/>
+</svg>
