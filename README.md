@@ -1,70 +1,107 @@
-# Getting Started with Create React App
+<div align="center">
+  <img src="./assets/banner.png" alt="Ashwath Mopathi — personal brand and journey site" width="100%" />
+</div>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<div align="center">
 
-## Available Scripts
+![React](https://img.shields.io/badge/React-0A1024?style=flat-square&logo=react&logoColor=61DAFB)
+![Framer Motion](https://img.shields.io/badge/Framer_Motion-0A1024?style=flat-square&logo=framer&logoColor=22D3EE)
+![CSS3](https://img.shields.io/badge/CSS3-0A1024?style=flat-square&logo=css3&logoColor=1572B6)
+![Status](https://img.shields.io/badge/client_project-in_progress-7C4DFF?style=flat-square&labelColor=0A1024)
 
-In the project directory, you can run:
+</div>
 
-### `npm start`
+## Overview
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+A personal-brand website built for **Ashwath Mopathi**, Melbourne. Rather than a conventional CV page, it's a narrative single-page site: it walks a visitor through his background, the path he took from an engineering degree in India to running his own business in Australia, what he's building toward, and the principles he works by.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+The editorial tone is deliberately understated — the site's own tagline is *"Quiet work, done properly."* — so the design leans on typography, generous spacing, large imagery and restrained motion rather than dense interface.
 
-### `npm test`
+## Preview
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+![Ashwath Mopathi site hero](./assets/preview-home.jpg)
 
-### `npm run build`
+<sub>Screenshot captured from a local production build of this repository. The photography shown is placeholder imagery — see <a href="#future-improvements">Future improvements</a>.</sub>
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Features
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- **Seven narrative sections** — Hero, About, Journey, Goals, Gallery, Ideology, Contact — composed in order on one scrolling page
+- **Journey timeline** rendering a year-by-year career path from a data file
+- **Goals and Ideology sections** presenting the long-term plan and the working principles behind it
+- **Image gallery** with motion-driven reveals
+- **Direct contact** — WhatsApp and email links, plus location, rendered from the content file
+- **Scroll-triggered animation** throughout, via Framer Motion
+- **Single content source** — all copy lives in `src/data/content.js`, so wording can be revised without touching components
+- **Responsive layout** for desktop, tablet and mobile
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Tech stack
 
-### `npm run eject`
+| Layer | Technology |
+|---|---|
+| Framework | React (Create React App) |
+| Animation | Framer Motion |
+| Content | A single exported content module (`src/data/content.js`) |
+| Styling | Hand-written CSS, one stylesheet per component |
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Project structure
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```
+src/
+├── components/
+│   ├── Navbar/      Section navigation
+│   ├── Hero/        Opening statement
+│   ├── About/       Background
+│   ├── Journey/     Year-by-year timeline
+│   ├── Goals/       What he's building toward
+│   ├── Gallery/     Image gallery
+│   ├── Ideology/    Working principles
+│   └── Contact/     Contact section
+├── data/
+│   └── content.js   All site copy — site, nav, hero, about, journey,
+│                    goals, gallery, ideology, contact, footer
+├── Assets/images/   Section and gallery imagery
+└── App.js           Section composition
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Running locally
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```bash
+git clone https://github.com/AJAY2043/Ashwath_Portfolio.git
+cd Ashwath_Portfolio
+npm install
+npm start
+```
 
-## Learn More
+The development server runs at `http://localhost:3000`.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```bash
+npm run build     # production build into ./build
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Editing content
 
-### Code Splitting
+Every string on the page comes from `src/data/content.js`, exported as named sections:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+```js
+export const hero = { … };
+export const journey = { items: [ { year, title, text }, … ] };
+export const ideology = { … };
+```
 
-### Analyzing the Bundle Size
+Change the copy there and the components pick it up — no component edits needed. Adding a timeline entry means adding one object to `journey.items`.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## Future improvements
 
-### Making a Progressive Web App
+- **Swap in the final photography.** The images in `src/Assets/images/` are placeholders; `content.js` flags this at the top of the file. Filenames should stay the same so no imports need changing.
+- Optionally add an enquiry form alongside the existing WhatsApp and email links, delivered via EmailJS
+- Add meta tags, Open Graph image and a favicon for link previews
+- Remove the unused `lenis` dependency, or use it to implement the smooth scrolling it was added for
+- Compress and serve imagery in modern formats for faster first paint
+- Accessibility pass — reduced-motion support and heading hierarchy
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## Credits
 
-### Advanced Configuration
+Designed and built by **Ajay Krishna Reddy Bhavanam** — Melbourne, Australia
+[LinkedIn](https://linkedin.com/in/ajay-krishna-reddy) · [GitHub](https://github.com/AJAY2043)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Site content and subject: Ashwath Mopathi.
